@@ -1,7 +1,56 @@
+<link rel="stylesheet" href="http://www.marghoobsuleman.com/mywork/jcomponents/image-dropdown/samples/css/msdropdown/dd.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://www.marghoobsuleman.com/mywork/jcomponents/image-dropdown/samples/js/msdropdown/jquery.dd.min.js"></script>
+
+ 
  <h1>{{title}}</h1>
 {{#if currentUser}}
   <h3>Welcome {{currentUser.username}}</h3>
 {{/if}}
+
+
 <div>
-<form action="/profile/edit"></form>
+  <form id="form"action="/sign-up" method="POST" enctype="multipart/form-data">
+  <label for ="email">Email</label>
+  <input id="email" type="text" name="email" placeholder="johndoe@gmail.com">
+  </div>
+
+  <div>
+  <label for ="adress">Adress</label>
+  <input id="adress" type="text" name="adress" placeholder="Your Adress">
+  </div>
+
+<div>
+  <label for="dateOfBirth">Date of Birth</label>
+  <input id="dateOfBirth" type="text" name="adress" placeholder="1990-01-01">
 </div>
+
+<div>
+  <label>Avatar</label>
+  <select name="avatar" id="menu">
+    <option value=""></option>
+    <option value="https://api.adorable.io/avatars/100/avatar1@adorable.io.png" title="https://api.adorable.io/avatars/100/avatar1@adorable.io.png"></option>
+    <option value="https://api.adorable.io/avatars/100/avatar1@adorable.io.png" title="https://api.adorable.io/avatars/100/avatar2@adorable.io.png"></option>
+    <option value="https://api.adorable.io/avatars/100/avatar1@adorable.io.png" title="https://api.adorable.io/avatars/100/avatar3@adorable.io.png"></option>
+    <option value="https://api.adorable.io/avatars/100/avatar1@adorable.io.png" title="https://api.adorable.io/avatars/100/avatar4@adorable.io.png"></option>
+    <option value="https://api.adorable.io/avatars/100/avatar1@adorable.io.png" title="https://api.adorable.io/avatars/100/avatar5@adorable.io.png"></option>
+    <option value="https://api.adorable.io/avatars/100/avatar1@adorable.io.png" title="https://api.adorable.io/avatars/100/avatar6@adorable.io.png"></option>
+  </select></div>
+
+<div>
+  <label>Photo</label>
+  <input type="file" name="photo">
+</div>
+
+<div>
+    <button type="submit">Update Account</button>
+</div>
+</form>
+
+<div>
+  <form method="get" action="/main">
+    <button type="submit">GET SOME NUTS AND GO TO PLAY</button>
+</form>
+</div>
+
+

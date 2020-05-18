@@ -112,4 +112,12 @@ else{
       }
     })
   })
+
+  // router.post("/profile", (req,res,next)=>{
+  //   const dateOfBirth = req.body.dateOfBirth
+  //   const password = req.body.password
+  //   const avatar = req.body.avatar
+
+  // })
+
   module.exports = router;
