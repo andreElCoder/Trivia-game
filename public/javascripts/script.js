@@ -15,10 +15,11 @@ let score=0
 const $canvas = document.getElementById("canvas")
 const $trivia= new Trivia($canvas)
 const player = new Player($trivia)
+const dice = new Dice($trivia)
 keysPressed()
 $trivia.displayBoard()
 player.printPlayer(this.x,this.y,"pink")
-
+dice.printFace()
 // document.getElementById("gotoyourpage").onclick = function () {
 //   location.href = profile.hbs
 // };
