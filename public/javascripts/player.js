@@ -8,6 +8,9 @@ class Player{
     this.actualIndex= 24;
     this.actualCategory=""
     this.color = "yellow"
+    this.movesAvailable=0
+    this.movesTaken=[]
+
   }
   printPlayer(){
     console.log(this.x)
@@ -46,108 +49,174 @@ class Player{
     this.ctx.closePath()
   }
   playerIndex(pressedkey){
+    this.movesAvailable--;
      // Boarders with vertical or horizontal interceptions
       if(this.actualIndex===0){
         switch(pressedkey){
-          case 37 : this.actualIndex=0;break
-          case 38 : this.actualIndex=1;break
-          case 39 : this.actualIndex=20;break
-          case 40 : this.actualIndex=19;break
-        }
+          case 37 : this.actualIndex=0;this.movesAvailable++;break
+          case 38 : if(!this.movesTaken.includes(1)){this.actualIndex=1;this.movesTaken.push(1)}else{this.movesAvailable};break
+          case 39 : if(!this.movesTaken.includes(20)){this.actualIndex=20;this.movesTaken.push(20)}else{this.movesAvailable++};break
+          case 40 : if(!this.movesTaken.includes(19)){this.actualIndex=19;this.movesTaken.push(19)}else{this.movesAvailable++};break
       }
+    }
       else if(this.actualIndex===5){
         switch(pressedkey){
-          case 37 : this.actualIndex=4;break
-          case 38 : this.actualIndex=5;break
-          case 39 : this.actualIndex=6;break
-          case 40 : this.actualIndex=36;break
+          case 37 :if(!this.movesTaken.includes(4)){this.actualIndex=4;this.movesTaken.push(4)}else{this.movesAvailable++};break
+          case 38 : this.actualIndex=5;this.movesAvailable++;break
+          case 39 : if(!this.movesTaken.includes(6)){this.actualIndex=6;this.movesTaken.push(6)}else{this.movesAvailable++};break
+          case 40 : if(!this.movesTaken.includes(36)){this.actualIndex=36;this.movesTaken.push(36)}else{this.movesAvailable++};break
         }
       }
       else if(this.actualIndex===10){
         switch(pressedkey){
-          case 37 : this.actualIndex=28;break
-          case 38 : this.actualIndex=9;break
-          case 39 : this.actualIndex=10;break
-          case 40 : this.actualIndex=11;break
+          case 37 : if(!this.movesTaken.includes(28)){this.actualIndex=28;this.movesTaken.push(28)}else{this.movesAvailable++};break
+          case 38 : if(!this.movesTaken.includes(9)){this.actualIndex=9;this.movesTaken.push(9)}else{this.movesAvailable++};break
+          case 39 : this.actualIndex=10;this.movesAvailable++;break
+          case 40 : if(!this.movesTaken.includes(11)){this.actualIndex=11;this.movesTaken.push(11)}else{this.movesAvailable++};break
         }
       }
       else if(this.actualIndex===15){
         switch(pressedkey){
-          case 37 : this.actualIndex=16;break
-          case 38 : this.actualIndex=32;break
-          case 39 : this.actualIndex=14;break
-          case 40 : this.actualIndex=15;break
+          case 37 : if(!this.movesTaken.includes(16)){this.actualIndex=16;this.movesTaken.push(16)}else{this.movesAvailable++};break
+          case 38 : if(!this.movesTaken.includes(32)){this.actualIndex=32;this.movesTaken.push(32)}else{this.movesAvailable++};break
+          case 39 : if(!this.movesTaken.includes(14)){this.actualIndex=14;this.movesTaken.push(14)}else{this.movesAvailable++};break
+          case 40 : this.actualIndex=15;this.movesAvailable++;break
         }
       }
       //Middle
       else if(this.actualIndex===24){
         switch(pressedkey){
-          case 37 : this.actualIndex=23;break
-          case 38 : this.actualIndex=33;break
-          case 39 : this.actualIndex=25;break
-          case 40 : this.actualIndex=29;break
+          case 37 : if(!this.movesTaken.includes(23)){this.actualIndex=23;this.movesTaken.push(23)}else{this.movesAvailable++};break
+          case 38 : if(!this.movesTaken.includes(33)){this.actualIndex=33;this.movesTaken.push(33)}else{this.movesAvailable++};break
+          case 39 : if(!this.movesTaken.includes(25)){this.actualIndex=25;this.movesTaken.push(25)}else{this.movesAvailable++};break
+          case 40 : if(!this.movesTaken.includes(29)){this.actualIndex=29;this.movesTaken.push(29)}else{this.movesAvailable++};break
         }
       }
       //Up arc 1 to 4
       else if(this.actualIndex>0 && this.actualIndex<5){
         switch(pressedkey){
-          case 37 : this.actualIndex--;break
-          case 38 : this.actualIndex++;break
-          case 39 : this.actualIndex++;break
-          case 40 : this.actualIndex--;break
+          case 37 : if(!this.movesTaken.includes(this.actualIndex-1)){this.actualIndex--;this.movesTaken.push(this.actualIndex)}else{this.movesAvailable++};break
+          case 38 : if(!this.movesTaken.includes(this.actualIndex+1)){this.actualIndex++;this.movesTaken.push(this.actualIndex)}else{this.movesAvailable++};break
+          case 39 : if(!this.movesTaken.includes(this.actualIndex+1)){this.actualIndex++;this.movesTaken.push(this.actualIndex)}else{this.movesAvailable++};break
+          case 40 : if(!this.movesTaken.includes(this.actualIndex-1)){this.actualIndex--;this.movesTaken.push(this.actualIndex)}else{this.movesAvailable++};break
         }
       }
       //Up arc 6 to 9
       else if(this.actualIndex>5 && this.actualIndex<10){
          switch(pressedkey){
-          case 37 : this.actualIndex--;break
-          case 38 : this.actualIndex--;break
-          case 39 : this.actualIndex++;break
-          case 40 : this.actualIndex++;break
+          case 37 : if(!this.movesTaken.includes(this.actualIndex-1)){this.actualIndex--;this.movesTaken.push(this.actualIndex)}else{this.movesAvailable++};break
+          case 38 : if(!this.movesTaken.includes(this.actualIndex-1)){this.actualIndex--;this.movesTaken.push(this.actualIndex)}else{this.movesAvailable++};break
+          case 39 : if(!this.movesTaken.includes(this.actualIndex+1)){this.actualIndex++;this.movesTaken.push(this.actualIndex)}else{this.movesAvailable++};break
+          case 40 : if(!this.movesTaken.includes(this.actualIndex+1)){this.actualIndex++;this.movesTaken.push(this.actualIndex)}else{this.movesAvailable++};break
           }
       }
       //Down arc 11 to 14
       else if(this.actualIndex>10 && this.actualIndex<15){
         switch(pressedkey){
-          case 37 : this.actualIndex++;break
-          case 38 : this.actualIndex--;break
-          case 39 : this.actualIndex--;break
-          case 40 : this.actualIndex++;break
+          case 37 : if(!this.movesTaken.includes(this.actualIndex+1)){this.actualIndex++;this.movesTaken.push(this.actualIndex)}else{this.movesAvailable++};break
+          case 38 : if(!this.movesTaken.includes(this.actualIndex-1)){this.actualIndex--;this.movesTaken.push(this.actualIndex)}else{this.movesAvailable++};break
+          case 39 : if(!this.movesTaken.includes(this.actualIndex-1)){this.actualIndex--;this.movesTaken.push(this.actualIndex)}else{this.movesAvailable++};break
+          case 40 : if(!this.movesTaken.includes(this.actualIndex+1)){this.actualIndex++;this.movesTaken.push(this.actualIndex)}else{this.movesAvailable++};break
         }
       }
       //Down arc 16 to 19
       else if(this.actualIndex>10 && this.actualIndex<20){
         switch(pressedkey){
-          case 37 : if(this.actualIndex===19){this.actualIndex=0} else {this.actualIndex++}break
-          case 38 : if(this.actualIndex===19){this.actualIndex=0} else {this.actualIndex++}break
-          case 39 : this.actualIndex--;break
-          case 40 : this.actualIndex--;break
+          case 37 :  if(!this.movesTaken.includes(0) && this.actualIndex===19){
+            this.actualIndex=0;this.movesTaken.push(this.actualIndex)
+          }
+          else if (!this.movesTaken.includes(this.actualIndex-1) && this.actualIndex!=19){
+            this.actualIndex--;
+          }
+          else{
+            this.movesAvailable++;
+          }break
+          case 38 :  if(!this.movesTaken.includes(0) && this.actualIndex===19){
+            this.actualIndex=0;this.movesTaken.push(this.actualIndex)
+          }
+          else if (!this.movesTaken.includes(this.actualIndex-1) && this.actualIndex!=19){
+            this.actualIndex--;
+          }
+          else{
+            this.movesAvailable++;
+          }break
+          case 39 : if(!this.movesTaken.includes(this.actualIndex-1)){this.actualIndex--;this.movesTaken.push(this.actualIndex)}else{this.movesAvailable++};break
+          case 40 : if(!this.movesTaken.includes(this.actualIndex-1)){this.actualIndex--;this.movesTaken.push(this.actualIndex)}else{this.movesAvailable++};break
         }
       }
       //Horizontal
       else if(this.actualIndex>19 && this.actualIndex<29){
         switch(pressedkey){
-          case 37 : if(this.actualIndex===20){this.actualIndex=0} else {this.actualIndex--}break
-          case 38 : ;break
-          case 39 : if(this.actualIndex===28){this.actualIndex=10} else {this.actualIndex++};break
-          case 40 : ;break
+          case 37 :  if(!this.movesTaken.includes(0) && this.actualIndex===20){
+            this.actualIndex=0;this.movesTaken.push(this.actualIndex)
+          }
+          else if (!this.movesTaken.includes(this.actualIndex-1) && this.actualIndex!=20){
+            this.actualIndex--;
+          }
+          else{
+            this.movesAvailable++;
+          }break
+        
+          case 38 : this.movesAvailable++;break
+          case 39 : if(!this.movesTaken.includes(10) && this.actualIndex===28){
+            this.actualIndex=10;this.movesTaken.push(this.actualIndex)
+          }
+          else if (!this.movesTaken.includes(this.actualIndex+1) && this.actualIndex!=28){
+            this.actualIndex++;
+          }
+          else{
+            this.movesAvailable++;
+          }break
+          case 40 : this.movesAvailable++;break
         }
       }
       //Vertical
       else if(this.actualIndex>28 && this.actualIndex<33){
         switch(pressedkey){
-          case 37 : ;break
-          case 38 : if(this.actualIndex===29){this.actualIndex=24} else {this.actualIndex--};break
-          case 39 : ;break
-          case 40 : if(this.actualIndex===32){this.actualIndex=15} else {this.actualIndex++};break
+          case 37 : this.movesAvailable++;break
+          case 38 : if(!this.movesTaken.includes(24) && this.actualIndex===29){
+            this.actualIndex=24;this.movesTaken.push(this.actualIndex)
+          }
+          else if (!this.movesTaken.includes(this.actualIndex-1) && this.actualIndex!=29){
+            this.actualIndex--;
+          }
+          else{
+            this.movesAvailable++;
+          }break
+          case 39 : this.movesAvailable++;break
+          case 40 : if(!this.movesTaken.includes(15) && this.actualIndex===32){
+            this.actualIndex=15;this.movesTaken.push(this.actualIndex)
+          }
+          else if (!this.movesTaken.includes(this.actualIndex+1) && this.actualIndex!=32){
+            this.actualIndex++;
+          }
+          else{
+            this.movesAvailable++;
+          }break
         }
       }
       else if(this.actualIndex>32 && this.actualIndex<37){
         switch(pressedkey){
-          case 37 : ;break
-          case 38 : if(this.actualIndex===36){this.actualIndex=5} else {this.actualIndex++};break
-          case 39 : ;break
-          case 40 : if(this.actualIndex===33){this.actualIndex=24} else {this.actualIndex--};break
+          case 37 : this.movesAvailable++;break
+          case 38 : if(!this.movesTaken.includes(5) && this.actualIndex===36){
+            this.actualIndex=5;this.movesTaken.push(this.actualIndex)
+          }
+          else if (!this.movesTaken.includes(this.actualIndex+1) && this.actualIndex!=36){
+            this.actualIndex++;
+          }
+          else{
+            this.movesAvailable++;
+          };break
+          case 39 : this.movesAvailable++;break
+          case 40 : if(!this.movesTaken.includes(24) && this.actualIndex===33){
+            this.actualIndex=24;this.movesTaken.push(this.actualIndex)
+          }
+          else if (!this.movesTaken.includes(this.actualIndex-1) && this.actualIndex!=33){
+            this.actualIndex--;
+          }
+          else{
+            this.movesAvailable++;
+          }break
         }
       }
     }
@@ -192,4 +261,5 @@ class Player{
       case 36 : this.x=500 ; this.y =85 ;this.actualCategory="E";break
     }
   }
+
   }
