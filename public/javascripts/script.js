@@ -11,17 +11,17 @@ let score=0
 </div>
 `
 */
-
+//window.cancelAnimationFrame(this.animationId);
 const $canvas = document.getElementById("canvas")
 const $trivia= new Trivia($canvas)
 const player = new Player($trivia)
 const dice = []
+let gameStatus = "on"
 dice.push(new Dice($trivia,6,0,0))
 dice.push(new Dice($trivia,6,100,0))
 
 $trivia.displayBoard()
 player.printPlayer(this.x,this.y,"pink")
-console.log(dice)
 dice[0].printFace()
 dice[1].printFace()
 // document.getElementById("gotoyourpage").onclick = function () {
@@ -46,9 +46,12 @@ setTimeout(() => { clearInterval(timerRoll);resolve()}, 5000);
   })
   
 promise.then(()=>{
-player.movesAvailable=dice[0].actualFace+dice[1].actualFace
-    
-  setTimeout(() => {
+  player.movesAvailable=dice[0].actualFace+dice[1].actualFace
+  keysPressed()
+      //while(player.movesAvailable)
+  checkMovement() 
+
+/*setTimeout(() => {
 
   axios
 .get(`https://opentdb.com/api.php?amount=1&category=${category_id}`)
@@ -123,7 +126,7 @@ player.movesAvailable=dice[0].actualFace+dice[1].actualFace
 }).catch(err =>{
   console.log("Error getting form the API"+err)
 })
-},6000)
+},6000)*/
 })
 })
 //}
@@ -152,10 +155,12 @@ function keysPressed(){
       if(event.keyCode ===37 ||event.keyCode === 38||event.keyCode === 39||event.keyCode === 40){
         console.log(event.keyCode)
         keysLogic(event.keyCode)
-        $trivia.displayBoard()
-        player.playerIndex(event.keyCode)
-        player.playerLocation()
-        player.printPlayer()
+        //$trivia.displayBoard()
+        if(player.playerIndex(event.keyCode)===0){
+          gameStatus="off"
+        }
+        //player.playerLocation()
+        //player.printPlayer()
       }
   })
   
@@ -172,3 +177,22 @@ function keysLogic(pressedkey){
   }
 
 }
+
+function checkMovement(){
+  
+  let animationId = window.requestAnimationFrame(() => {
+    if(gameStatus==="on"){
+    //while(player.movesAvailable)
+    $trivia.displayBoard()
+    //player.playerIndex(event.keyCode)
+    //player.playerLocation()
+    player.printPlayer()
+    checkMovement()
+  }else{
+    window.cancelAnimationFrame(animationId);
+
+  }
+    }) 
+   /* if (this.gameStatus === "game-over") {
+}*/
+} 

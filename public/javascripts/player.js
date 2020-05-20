@@ -49,6 +49,7 @@ class Player{
     this.ctx.closePath()
   }
   playerIndex(pressedkey){
+    if(this.movesAvailable>0){
     this.movesAvailable--;
      // Boarders with vertical or horizontal interceptions
       if(this.actualIndex===0){
@@ -219,7 +220,11 @@ class Player{
           }break
         }
       }
+      console.log(this.movesAvailable)
+      this.playerLocation()
+      return this.movesAvailable
     }
+  }
   playerLocation(){
     switch(this.actualIndex){
       case 0  : this.x=285 ; this.y =250 ;this.actualCategory="";break
