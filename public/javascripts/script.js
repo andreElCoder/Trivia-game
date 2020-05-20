@@ -15,10 +15,15 @@ let score=0
 const $canvas = document.getElementById("canvas")
 const $trivia= new Trivia($canvas)
 const player = new Player($trivia)
-keysPressed()
+const dice = []
+dice.push(new Dice($trivia,6,0,0))
+dice.push(new Dice($trivia,6,100,0))
+
 $trivia.displayBoard()
 player.printPlayer(this.x,this.y,"pink")
-
+console.log(dice)
+dice[0].printFace()
+dice[1].printFace()
 // document.getElementById("gotoyourpage").onclick = function () {
 //   location.href = profile.hbs
 // };
@@ -29,7 +34,23 @@ document.getElementById('dice').addEventListener('click',() => {
   let button = document.getElementById('dice')
   button.style.visibility = "hidden"
   button.setAttribute("disabled","true")
-axios
+  let promise = new Promise(function(resolve,reject){
+    let timerRoll=setInterval(()=>{
+    dice[0].roll()
+    dice[0].printFace()
+    dice[1].roll()
+    dice[1].printFace()
+// after 5 seconds stop
+setTimeout(() => { clearInterval(timerRoll);resolve()}, 5000);
+  },500)
+  })
+  
+promise.then(()=>{
+player.movesAvailable=dice[0].actualFace+dice[1].actualFace
+    
+  setTimeout(() => {
+
+  axios
 .get(`https://opentdb.com/api.php?amount=1&category=${category_id}`)
 .then(response =>{
   console.log(response)
@@ -41,7 +62,7 @@ axios
   `
   document.getElementById('ShowMe').innerHTML += newCharacterHTML;
   //debugger
-  let timerQuestion = setTimeout(() => {
+     setTimeout(() => {
     const question = document.createElement('H4')
     question.setAttribute("id","question")
     const possibleResponses = response.data.results[0].incorrect_answers
@@ -85,7 +106,7 @@ axios
           })
           response.setAttribute("class","response red")
         } 
-        let cleanScreen = setTimeout(() => {
+        setTimeout(() => {
         console.log(button)
         button.style.visibility = "visible"
         button.removeAttribute("disabled")
@@ -100,7 +121,9 @@ axios
     })
   }, 1000); 
 }).catch(err =>{
-  console.log(err)
+  console.log("Error getting form the API"+err)
+})
+},6000)
 })
 })
 //}
@@ -129,6 +152,7 @@ function keysPressed(){
       if(event.keyCode ===37 ||event.keyCode === 38||event.keyCode === 39||event.keyCode === 40){
         console.log(event.keyCode)
         keysLogic(event.keyCode)
+        $trivia.displayBoard()
         player.playerIndex(event.keyCode)
         player.playerLocation()
         player.printPlayer()
