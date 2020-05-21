@@ -81,7 +81,9 @@ circle (x,y,radius,color,radians){
     this.ctx.closePath()
 }
 drawPie(){
-
+  //debugger
+  this.ctx.clearRect(0, 0, 750, 800);
+  
 // List of Angles
 let angles = [Math.PI /8, Math.PI /8, Math.PI /8, Math.PI /8, Math.PI /8, Math.PI /8, Math.PI /8, Math.PI /8, Math.PI /8, Math.PI /8, Math.PI /8, Math.PI /8, Math.PI /8, Math.PI /8, Math.PI /8, Math.PI /8];
 
@@ -99,7 +101,7 @@ for(let i = 0; i < angles.length; i = i + 1) {
   this.ctx.beginPath();
   // Fill color
   this.ctx.fillStyle = this.colors[i % this.colors.length];
-  
+  this.ctx.strokeStyle="black"
   // Same code as before
   this.ctx.moveTo(this.width/2, this.height/2);
   this.ctx.arc(this.width/2, this.height/2, this.height/2, beginAngle, endAngle);
@@ -110,6 +112,7 @@ for(let i = 0; i < angles.length; i = i + 1) {
   // Fill
   this.ctx.fill();
 }
+this.ctx.closePath()
 }
 line(x,y,xFinal,yFinal,color,lineWidth){
   this.ctx.beginPath()
@@ -172,5 +175,13 @@ this.printCategories()
 
 coordinatesY(x,radius){
   return Math.pow(Math.pow(radius,2)-Math.pow(x,2),0.5)
+}
+clearCanvas(){
+  this.ctx.beginPath()
+  this.ctx.fillStyle="red"
+  this.ctx.strokeStyle="red"
+  this.ctx.rect(250, 0, this.width,this.height);
+  this.ctx.fill()
+  this.ctx.closePath()
 }
 }

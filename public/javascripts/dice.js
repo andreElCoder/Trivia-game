@@ -47,8 +47,9 @@ roundRect(ctx, x, y, width, height, radius, fill, stroke) {
   }        
 }
 printNumber(){
-  this.ctx.fillStyle="black"
   this.ctx.beginPath()
+  this.ctx.fillStyle="black"
+  
   switch (this.actualFace){
     case 0 : {break}
     case 1 : {this.ctx.beginPath();this.ctx.arc(40+this.initialX, 40+this.initialY, 10, 0, 2 * Math.PI);this.ctx.fill();this.ctx.closePath();break}
@@ -101,7 +102,7 @@ printNumber(){
     }
     //this.ctx.fillStyle="black"
 
-    this.ctx.beginPath()
+    this.ctx.closePath()
   
 }
 
