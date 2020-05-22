@@ -4,7 +4,7 @@ class Player{
     this.ctx=this.game.ctx
     this.x = this.game.width/2
     this.y = this.game.height/2
-    this.categories = [false,false,false,false,false] //red , blue ,gray ,orange , purple
+    this.categories = [false,true,true,true,true] //red , blue ,gray ,orange , purple
     this.actualIndex= 24;
     this.actualCategory=""
     this.color = "yellow"
@@ -35,7 +35,9 @@ class Player{
            this.ctx.fillStyle = colors[index];
         }
         else{
-          this.ctx.fillStyle = this.color
+          if(i==0 && this.categories[i]){this.ctx.fillStyle = colors[0]}
+          else{this.ctx.fillStyle = this.color}
+          
         }      
         // Same code as before
         this.ctx.moveTo(this.x, this.y);
@@ -268,5 +270,14 @@ class Player{
 clearOldInfo(){
   this.movesAvailable=0
   this.movesTaken=[]
+}
+checkAllTrue(){
+  
+  let allTrue=true
+  this.categories.forEach(element => {
+    if(!element) allTrue=false
+  })
+
+  return allTrue
 }
   }

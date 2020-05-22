@@ -246,9 +246,41 @@ setTimeout(() => {
           response.setAttribute("class","response green")               //Correct green
           score++;
           answerMappingPlayer()
-          document.getElementById("score").innerText=`Score : ${score}`          
+
+          document.getElementById("score").innerText=`Score : ${score}`
+          if(player.checkAllTrue())
+            {
+              player.printPlayer()  
+              axios.post('http://localhost:3000/main',{score:score})//'https://ih-crud-api.herokuapp.com/characters/${theId}'
+              .then(response => console.log("post successful and the response is: ", response))
+              .catch(error => console.log("Oh No! Error is: ", error));
+              let playAgain = document.createElement('BUTTON')
+              playAgain.setAttribute("class","play-again")
+              playAgain.innerText = "Play again"
+              console.log(document.getElementsByClassName('board')[0])
+              document.getElementsByClassName('board')[0].appendChild(playAgain)
+              playAgain.addEventListener('click', event => {
+                player.clearOldInfo()
+                score=0;
+                document.getElementById("score").innerText=`Score : ${score}`
+                playAgain.style.visibility = "hidden"
+                button.style.visibility = "hidden"
+                console.log(button)
+                button.style.visibility = "visible"
+                button.removeAttribute("disabled")
+                document.getElementById("category").remove()
+                document.getElementById("question").remove()
+                console.log(document.querySelectorAll(".response"))
+                document.querySelectorAll(".response").forEach(response => {
+                  response.remove()}
+                )
+                
+              })
+            }          
         }
-        else{                                                           //Wrong asnwer
+        else{      
+          score=score-0.5;                                                     //Wrong asnwer
+          document.getElementById("score").innerText=`Score : ${score}`
           document.querySelectorAll(".response").forEach(option => {
             option.setAttribute("class","response red")          
             if(option.innerText===correct_answer){
@@ -260,6 +292,7 @@ setTimeout(() => {
           response.setAttribute("class","response red")
         } 
         setTimeout(() => {
+          if(!player.checkAllTrue()){
         console.log(button)
         button.style.visibility = "visible"
         button.removeAttribute("disabled")
@@ -267,8 +300,8 @@ setTimeout(() => {
         document.getElementById("question").remove()
         console.log(document.querySelectorAll(".response"))
         document.querySelectorAll(".response").forEach(response => {
-          response.remove()
-        })
+          response.remove()}
+        )}
       },1000)
       })
     })
