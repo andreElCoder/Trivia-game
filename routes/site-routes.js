@@ -53,14 +53,11 @@ router.get('/ranking', (req, res, next) => {
   User.find({ "highScore": { $gt: -1 }},{"highScore":-1,"username":1}).sort({"highScore":-1})
   .then(highScore =>{
     ranking=highScore
-    console.log(ranking[0])
-    let index=[]
-    ranking.forEach(element => {
-      index.push(index.indexOf(element)+1)
-    });
-    console.log(ranking)
-    console.log({ranking :ranking , index: index})
-    res.render('ranking',{ranking :ranking , index: index});
+    console.log("Ranking from db ",ranking)
+    //let index=[]
+let count = 0;
+let primeiro = ranking
+    res.render('ranking',{primeiro:primeiro});
   })
   .catch(err => console.log(err))
   
