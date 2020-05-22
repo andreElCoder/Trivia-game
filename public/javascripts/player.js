@@ -4,7 +4,7 @@ class Player{
     this.ctx=this.game.ctx
     this.x = this.game.width/2
     this.y = this.game.height/2
-    this.categories = [false,true,true,true,true] //red , blue ,gray ,orange , purple
+    this.categories = [false,false,false,false,false] //red , blue ,gray ,orange , purple
     this.actualIndex= 24;
     this.actualCategory=""
     this.color = "yellow"
@@ -279,5 +279,11 @@ checkAllTrue(){
   })
 
   return allTrue
+}
+reset(){
+  this.clearOldInfo()
+  this.actualIndex= 24;
+  this.playerLocation()
+  this.categories=[false,false,false,false,false]
 }
   }

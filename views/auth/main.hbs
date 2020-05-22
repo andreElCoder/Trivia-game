@@ -4,13 +4,32 @@
   
 </div>-->
 {{!-- <input type = button onClick="parent.location= profile.hbs" value='Profile Page'> --}}
-<a href="/profile">Profile.page</a>
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">
+    <img src="/images/player.PNG" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">Trivia-Game</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="/profile">Profile <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link active" href="/ranking">Ranking <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link active" href="/logout">Logout<span class="sr-only">(current)</span></a>
+    </div>
+  </div>
+</nav>
+
 <h2 id="score">Score : 0</h2>
 <button type="submit" id="dice">Roll Dice</button>
 <div id ="die"></div>
-<div class="board">
+<div class="board center">
   <canvas id="canvas" width='1000vw' height='500vh'></canvas>
 <div>
   <h3 id="ShowMe"></h3>
 </div>
 </div>
+
+  <script type="text/javascript" src='javascripts/canvas.js'></script>
+    <script type="text/javascript" src='javascripts/player.js'></script>
+    <script type="text/javascript" src='javascripts/dice.js'></script>
+    <script type="text/javascript" src='javascripts/script.js'></script>

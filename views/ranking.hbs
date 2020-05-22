@@ -1,0 +1,21 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Username</th>
+      <th scope="col">HighScore</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each ranking}}
+    <tr>
+      <th scope="row">{{index}}</th>
+    
+      <td>{{this.username}}</td>
+      <td>{{this.highScore}}</td>
+
+    </tr>
+{{/each}}
+  </tbody>
+</table>
+

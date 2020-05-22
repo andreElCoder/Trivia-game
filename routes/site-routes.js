@@ -48,4 +48,22 @@ router.get('/profile', (req,res,next)=>{
 router.get('/private', (req, res, next) => {
   res.render('private');
 });
+router.get('/ranking', (req, res, next) => {
+  let ranking;
+  User.find({ "highScore": { $gt: -1 }},{"highScore":-1,"username":1}).sort({"highScore":-1})
+  .then(highScore =>{
+    ranking=highScore
+    console.log(ranking[0])
+    let index=[]
+    ranking.forEach(element => {
+      index.push(index.indexOf(element)+1)
+    });
+    console.log(ranking)
+    console.log({ranking :ranking , index: index})
+    res.render('ranking',{ranking :ranking , index: index});
+  })
+  .catch(err => console.log(err))
+  
+ 
+});
 module.exports = router;
