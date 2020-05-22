@@ -12,7 +12,7 @@ const session      = require ("express-session")
 const MongoStore  = require("connect-mongo")(session)
 
 mongoose
-.connect(process.env.MONGODB_URI, { useUnifiedTopology: true , useNewUrlParser: true})
+.connect('mongodb://localhost/starter-code', {useNewUrlParser: true})// process.env.MONGODB_URI, { useUnifiedTopology: true , useNewUrlParser: true})
 .then(x => {
   console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
 })

@@ -9,7 +9,6 @@ class Dice{
   }
   roll(){
     this.actualFace=Math.floor(Math.random()*6)+1
-    console.log(this.actualFace)
   }
   printFace(){
 
@@ -48,13 +47,14 @@ roundRect(ctx, x, y, width, height, radius, fill, stroke) {
   }        
 }
 printNumber(){
-  this.ctx.fillStyle="black"
   this.ctx.beginPath()
+  this.ctx.fillStyle="black"
+  
   switch (this.actualFace){
     case 0 : {break}
     case 1 : {this.ctx.beginPath();this.ctx.arc(40+this.initialX, 40+this.initialY, 10, 0, 2 * Math.PI);this.ctx.fill();this.ctx.closePath();break}
-    case 2 : {this.ctx.beginPath();this.ctx.arc(20+this.initialX, 20+this.initialY, 10, 0, 2 * Math.PI);this.ctx.fill();this.ctx.closePath();this.ctx.beginPath();this.ctx.arc(60+this.initialX, 60+this.initialY, 10+this.initialY, 0, 2 * Math.PI);this.ctx.fill();this.ctx.closePath();break}
-    case 3 : {this.ctx.beginPath();this.ctx.arc(20+this.initialX, 20+this.initialY, 10, 0, 2 * Math.PI);this.ctx.fill();this.ctx.closePath();this.ctx.beginPath();this.ctx.arc(60+this.initialX, 60+this.initialY, 10+this.initialY, 0, 2 * Math.PI);this.ctx.fill();this.ctx.closePath();this.ctx.beginPath();this.ctx.arc(40+this.initialX, 40+this.initialY, 10, 0, 2 * Math.PI);this.ctx.fill();this.ctx.closePath();break}
+    case 2 : {this.ctx.beginPath();this.ctx.arc(20+this.initialX, 20+this.initialY, 10, 0, 2 * Math.PI);this.ctx.fill();this.ctx.closePath();this.ctx.beginPath();this.ctx.arc(60+this.initialX, 60+this.initialY, 10, 0, 2 * Math.PI);this.ctx.fill();this.ctx.closePath();break}
+    case 3 : {this.ctx.beginPath();this.ctx.arc(20+this.initialX, 20+this.initialY, 10, 0, 2 * Math.PI);this.ctx.fill();this.ctx.closePath();this.ctx.beginPath();this.ctx.arc(60+this.initialX, 60+this.initialY, 10, 0, 2 * Math.PI);this.ctx.fill();this.ctx.closePath();this.ctx.beginPath();this.ctx.arc(40+this.initialX, 40+this.initialY, 10, 0, 2 * Math.PI);this.ctx.fill();this.ctx.closePath();break}
     case 4 : {
       this.ctx.beginPath();
       this.ctx.arc(20+this.initialX, 20+this.initialY, 10, 0, 2 * Math.PI);
@@ -102,7 +102,7 @@ printNumber(){
     }
     //this.ctx.fillStyle="black"
 
-    this.ctx.beginPath()
+    this.ctx.closePath()
   
 }
 

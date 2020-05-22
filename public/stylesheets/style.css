@@ -17,4 +17,9 @@ a {
 #canvas {
   border: solid 5px red; }
 
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
 /*# sourceMappingURL=style.css.map */

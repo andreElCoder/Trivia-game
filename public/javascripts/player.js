@@ -4,7 +4,7 @@ class Player{
     this.ctx=this.game.ctx
     this.x = this.game.width/2
     this.y = this.game.height/2
-    this.categories = [false,false,false,false,false]
+    this.categories = [false,false,false,false,false] //red , blue ,gray ,orange , purple
     this.actualIndex= 24;
     this.actualCategory=""
     this.color = "yellow"
@@ -13,8 +13,7 @@ class Player{
 
   }
   printPlayer(){
-    console.log(this.x)
-    console.log(this.y)
+    
     console.log(this.actualIndex)
     const colors=['red', 'blue', 'gray', 'orange','purple']
       // List of Angles
@@ -36,7 +35,9 @@ class Player{
            this.ctx.fillStyle = colors[index];
         }
         else{
-          this.ctx.fillStyle = this.color
+          if(i==0 && this.categories[i]){this.ctx.fillStyle = colors[0]}
+          else{this.ctx.fillStyle = this.color}
+          
         }      
         // Same code as before
         this.ctx.moveTo(this.x, this.y);
@@ -49,109 +50,110 @@ class Player{
     this.ctx.closePath()
   }
   playerIndex(pressedkey){
+    if(this.movesAvailable>0){
     this.movesAvailable--;
      // Boarders with vertical or horizontal interceptions
       if(this.actualIndex===0){
         switch(pressedkey){
           case 37 : this.actualIndex=0;this.movesAvailable++;break
-          case 38 : if(!this.movesTaken.includes(1)){this.actualIndex=1;this.movesTaken.push(1)}else{this.movesAvailable};break
-          case 39 : if(!this.movesTaken.includes(20)){this.actualIndex=20;this.movesTaken.push(20)}else{this.movesAvailable++};break
-          case 40 : if(!this.movesTaken.includes(19)){this.actualIndex=19;this.movesTaken.push(19)}else{this.movesAvailable++};break
+          case 38 : if(!this.movesTaken.includes(1)){this.actualIndex=1;this.movesTaken.push(0)}else{this.movesAvailable};break
+          case 39 : if(!this.movesTaken.includes(20)){this.actualIndex=20;this.movesTaken.push(0)}else{this.movesAvailable++};break
+          case 40 : if(!this.movesTaken.includes(19)){this.actualIndex=19;this.movesTaken.push(0)}else{this.movesAvailable++};break
       }
     }
       else if(this.actualIndex===5){
         switch(pressedkey){
-          case 37 :if(!this.movesTaken.includes(4)){this.actualIndex=4;this.movesTaken.push(4)}else{this.movesAvailable++};break
+          case 37 :if(!this.movesTaken.includes(4)){this.actualIndex=4;this.movesTaken.push(5)}else{this.movesAvailable++};break
           case 38 : this.actualIndex=5;this.movesAvailable++;break
-          case 39 : if(!this.movesTaken.includes(6)){this.actualIndex=6;this.movesTaken.push(6)}else{this.movesAvailable++};break
-          case 40 : if(!this.movesTaken.includes(36)){this.actualIndex=36;this.movesTaken.push(36)}else{this.movesAvailable++};break
+          case 39 : if(!this.movesTaken.includes(6)){this.actualIndex=6;this.movesTaken.push(5)}else{this.movesAvailable++};break
+          case 40 : if(!this.movesTaken.includes(36)){this.actualIndex=36;this.movesTaken.push(5)}else{this.movesAvailable++};break
         }
       }
       else if(this.actualIndex===10){
         switch(pressedkey){
-          case 37 : if(!this.movesTaken.includes(28)){this.actualIndex=28;this.movesTaken.push(28)}else{this.movesAvailable++};break
-          case 38 : if(!this.movesTaken.includes(9)){this.actualIndex=9;this.movesTaken.push(9)}else{this.movesAvailable++};break
+          case 37 : if(!this.movesTaken.includes(28)){this.actualIndex=28;this.movesTaken.push(10)}else{this.movesAvailable++};break
+          case 38 : if(!this.movesTaken.includes(9)){this.actualIndex=9;this.movesTaken.push(10)}else{this.movesAvailable++};break
           case 39 : this.actualIndex=10;this.movesAvailable++;break
-          case 40 : if(!this.movesTaken.includes(11)){this.actualIndex=11;this.movesTaken.push(11)}else{this.movesAvailable++};break
+          case 40 : if(!this.movesTaken.includes(11)){this.actualIndex=11;this.movesTaken.push(10)}else{this.movesAvailable++};break
         }
       }
       else if(this.actualIndex===15){
         switch(pressedkey){
-          case 37 : if(!this.movesTaken.includes(16)){this.actualIndex=16;this.movesTaken.push(16)}else{this.movesAvailable++};break
-          case 38 : if(!this.movesTaken.includes(32)){this.actualIndex=32;this.movesTaken.push(32)}else{this.movesAvailable++};break
-          case 39 : if(!this.movesTaken.includes(14)){this.actualIndex=14;this.movesTaken.push(14)}else{this.movesAvailable++};break
+          case 37 : if(!this.movesTaken.includes(16)){this.actualIndex=16;this.movesTaken.push(15)}else{this.movesAvailable++};break
+          case 38 : if(!this.movesTaken.includes(32)){this.actualIndex=32;this.movesTaken.push(15)}else{this.movesAvailable++};break
+          case 39 : if(!this.movesTaken.includes(14)){this.actualIndex=14;this.movesTaken.push(15)}else{this.movesAvailable++};break
           case 40 : this.actualIndex=15;this.movesAvailable++;break
         }
       }
       //Middle
       else if(this.actualIndex===24){
         switch(pressedkey){
-          case 37 : if(!this.movesTaken.includes(23)){this.actualIndex=23;this.movesTaken.push(23)}else{this.movesAvailable++};break
-          case 38 : if(!this.movesTaken.includes(33)){this.actualIndex=33;this.movesTaken.push(33)}else{this.movesAvailable++};break
-          case 39 : if(!this.movesTaken.includes(25)){this.actualIndex=25;this.movesTaken.push(25)}else{this.movesAvailable++};break
-          case 40 : if(!this.movesTaken.includes(29)){this.actualIndex=29;this.movesTaken.push(29)}else{this.movesAvailable++};break
+          case 37 : if(!this.movesTaken.includes(23)){this.actualIndex=23;this.movesTaken.push(24)}else{this.movesAvailable++};break
+          case 38 : if(!this.movesTaken.includes(33)){this.actualIndex=33;this.movesTaken.push(24)}else{this.movesAvailable++};break
+          case 39 : if(!this.movesTaken.includes(25)){this.actualIndex=25;this.movesTaken.push(24)}else{this.movesAvailable++};break
+          case 40 : if(!this.movesTaken.includes(29)){this.actualIndex=29;this.movesTaken.push(24)}else{this.movesAvailable++};break
         }
       }
       //Up arc 1 to 4
       else if(this.actualIndex>0 && this.actualIndex<5){
         switch(pressedkey){
-          case 37 : if(!this.movesTaken.includes(this.actualIndex-1)){this.actualIndex--;this.movesTaken.push(this.actualIndex)}else{this.movesAvailable++};break
-          case 38 : if(!this.movesTaken.includes(this.actualIndex+1)){this.actualIndex++;this.movesTaken.push(this.actualIndex)}else{this.movesAvailable++};break
-          case 39 : if(!this.movesTaken.includes(this.actualIndex+1)){this.actualIndex++;this.movesTaken.push(this.actualIndex)}else{this.movesAvailable++};break
-          case 40 : if(!this.movesTaken.includes(this.actualIndex-1)){this.actualIndex--;this.movesTaken.push(this.actualIndex)}else{this.movesAvailable++};break
+          case 37 : if(!this.movesTaken.includes(this.actualIndex-1)){this.movesTaken.push(this.actualIndex);this.actualIndex--;}else{this.movesAvailable++};break
+          case 38 : if(!this.movesTaken.includes(this.actualIndex+1)){this.movesTaken.push(this.actualIndex);this.actualIndex++;}else{this.movesAvailable++};break
+          case 39 : if(!this.movesTaken.includes(this.actualIndex+1)){this.movesTaken.push(this.actualIndex);this.actualIndex++;}else{this.movesAvailable++};break
+          case 40 : if(!this.movesTaken.includes(this.actualIndex-1)){this.movesTaken.push(this.actualIndex);this.actualIndex--;}else{this.movesAvailable++};break
         }
       }
       //Up arc 6 to 9
       else if(this.actualIndex>5 && this.actualIndex<10){
          switch(pressedkey){
-          case 37 : if(!this.movesTaken.includes(this.actualIndex-1)){this.actualIndex--;this.movesTaken.push(this.actualIndex)}else{this.movesAvailable++};break
-          case 38 : if(!this.movesTaken.includes(this.actualIndex-1)){this.actualIndex--;this.movesTaken.push(this.actualIndex)}else{this.movesAvailable++};break
-          case 39 : if(!this.movesTaken.includes(this.actualIndex+1)){this.actualIndex++;this.movesTaken.push(this.actualIndex)}else{this.movesAvailable++};break
-          case 40 : if(!this.movesTaken.includes(this.actualIndex+1)){this.actualIndex++;this.movesTaken.push(this.actualIndex)}else{this.movesAvailable++};break
+          case 37 : if(!this.movesTaken.includes(this.actualIndex-1)){this.movesTaken.push(this.actualIndex);this.actualIndex--;}else{this.movesAvailable++};break
+          case 38 : if(!this.movesTaken.includes(this.actualIndex-1)){this.movesTaken.push(this.actualIndex);this.actualIndex--;}else{this.movesAvailable++};break
+          case 39 : if(!this.movesTaken.includes(this.actualIndex+1)){this.movesTaken.push(this.actualIndex);this.actualIndex++;}else{this.movesAvailable++};break
+          case 40 : if(!this.movesTaken.includes(this.actualIndex+1)){this.movesTaken.push(this.actualIndex);this.actualIndex++;}else{this.movesAvailable++};break
           }
       }
       //Down arc 11 to 14
       else if(this.actualIndex>10 && this.actualIndex<15){
         switch(pressedkey){
-          case 37 : if(!this.movesTaken.includes(this.actualIndex+1)){this.actualIndex++;this.movesTaken.push(this.actualIndex)}else{this.movesAvailable++};break
-          case 38 : if(!this.movesTaken.includes(this.actualIndex-1)){this.actualIndex--;this.movesTaken.push(this.actualIndex)}else{this.movesAvailable++};break
-          case 39 : if(!this.movesTaken.includes(this.actualIndex-1)){this.actualIndex--;this.movesTaken.push(this.actualIndex)}else{this.movesAvailable++};break
-          case 40 : if(!this.movesTaken.includes(this.actualIndex+1)){this.actualIndex++;this.movesTaken.push(this.actualIndex)}else{this.movesAvailable++};break
+          case 37 : if(!this.movesTaken.includes(this.actualIndex+1)){this.movesTaken.push(this.actualIndex);this.actualIndex++;}else{this.movesAvailable++};break
+          case 38 : if(!this.movesTaken.includes(this.actualIndex-1)){this.movesTaken.push(this.actualIndex);this.actualIndex--;}else{this.movesAvailable++};break
+          case 39 : if(!this.movesTaken.includes(this.actualIndex-1)){this.movesTaken.push(this.actualIndex);this.actualIndex--;}else{this.movesAvailable++};break
+          case 40 : if(!this.movesTaken.includes(this.actualIndex+1)){this.movesTaken.push(this.actualIndex);this.actualIndex++;}else{this.movesAvailable++};break
         }
       }
       //Down arc 16 to 19
-      else if(this.actualIndex>10 && this.actualIndex<20){
+      else if(this.actualIndex>15 && this.actualIndex<20){
         switch(pressedkey){
           case 37 :  if(!this.movesTaken.includes(0) && this.actualIndex===19){
-            this.actualIndex=0;this.movesTaken.push(this.actualIndex)
+            this.actualIndex=0;this.movesTaken.push(19)
           }
-          else if (!this.movesTaken.includes(this.actualIndex-1) && this.actualIndex!=19){
-            this.actualIndex--;
+          else if (!this.movesTaken.includes(this.actualIndex+1) && this.actualIndex!=19){
+            this.movesTaken.push(this.actualIndex);this.actualIndex++;
           }
           else{
             this.movesAvailable++;
           }break
           case 38 :  if(!this.movesTaken.includes(0) && this.actualIndex===19){
-            this.actualIndex=0;this.movesTaken.push(this.actualIndex)
+            this.actualIndex=0;this.movesTaken.push(19)
           }
-          else if (!this.movesTaken.includes(this.actualIndex-1) && this.actualIndex!=19){
-            this.actualIndex--;
+          else if (!this.movesTaken.includes(this.actualIndex+1) && this.actualIndex!=19){
+            this.movesTaken.push(this.actualIndex);this.actualIndex++;
           }
           else{
             this.movesAvailable++;
           }break
-          case 39 : if(!this.movesTaken.includes(this.actualIndex-1)){this.actualIndex--;this.movesTaken.push(this.actualIndex)}else{this.movesAvailable++};break
-          case 40 : if(!this.movesTaken.includes(this.actualIndex-1)){this.actualIndex--;this.movesTaken.push(this.actualIndex)}else{this.movesAvailable++};break
+          case 39 : if(!this.movesTaken.includes(this.actualIndex-1)){this.movesTaken.push(this.actualIndex);this.actualIndex--;}else{this.movesAvailable++};break
+          case 40 : if(!this.movesTaken.includes(this.actualIndex-1)){this.movesTaken.push(this.actualIndex);this.actualIndex--;}else{this.movesAvailable++};break
         }
       }
       //Horizontal
       else if(this.actualIndex>19 && this.actualIndex<29){
         switch(pressedkey){
           case 37 :  if(!this.movesTaken.includes(0) && this.actualIndex===20){
-            this.actualIndex=0;this.movesTaken.push(this.actualIndex)
+            this.movesTaken.push(this.actualIndex);this.actualIndex=0;
           }
           else if (!this.movesTaken.includes(this.actualIndex-1) && this.actualIndex!=20){
-            this.actualIndex--;
+            this.movesTaken.push(this.actualIndex);this.actualIndex--;
           }
           else{
             this.movesAvailable++;
@@ -159,10 +161,10 @@ class Player{
         
           case 38 : this.movesAvailable++;break
           case 39 : if(!this.movesTaken.includes(10) && this.actualIndex===28){
-            this.actualIndex=10;this.movesTaken.push(this.actualIndex)
+            this.movesTaken.push(this.actualIndex);this.actualIndex=10;
           }
           else if (!this.movesTaken.includes(this.actualIndex+1) && this.actualIndex!=28){
-            this.actualIndex++;
+            this.movesTaken.push(this.actualIndex);this.actualIndex++;
           }
           else{
             this.movesAvailable++;
@@ -175,10 +177,10 @@ class Player{
         switch(pressedkey){
           case 37 : this.movesAvailable++;break
           case 38 : if(!this.movesTaken.includes(24) && this.actualIndex===29){
-            this.actualIndex=24;this.movesTaken.push(this.actualIndex)
+            this.movesTaken.push(this.actualIndex);this.actualIndex=24;
           }
           else if (!this.movesTaken.includes(this.actualIndex-1) && this.actualIndex!=29){
-            this.actualIndex--;
+            this.movesTaken.push(this.actualIndex);this.actualIndex--;
           }
           else{
             this.movesAvailable++;
@@ -188,7 +190,7 @@ class Player{
             this.actualIndex=15;this.movesTaken.push(this.actualIndex)
           }
           else if (!this.movesTaken.includes(this.actualIndex+1) && this.actualIndex!=32){
-            this.actualIndex++;
+            this.movesTaken.push(this.actualIndex);this.actualIndex++;
           }
           else{
             this.movesAvailable++;
@@ -199,27 +201,31 @@ class Player{
         switch(pressedkey){
           case 37 : this.movesAvailable++;break
           case 38 : if(!this.movesTaken.includes(5) && this.actualIndex===36){
-            this.actualIndex=5;this.movesTaken.push(this.actualIndex)
+            this.movesTaken.push(this.actualIndex);this.actualIndex=5;
           }
           else if (!this.movesTaken.includes(this.actualIndex+1) && this.actualIndex!=36){
-            this.actualIndex++;
+            this.movesTaken.push(this.actualIndex);this.actualIndex++;
           }
           else{
             this.movesAvailable++;
           };break
           case 39 : this.movesAvailable++;break
           case 40 : if(!this.movesTaken.includes(24) && this.actualIndex===33){
-            this.actualIndex=24;this.movesTaken.push(this.actualIndex)
+            this.movesTaken.push(this.actualIndex);this.actualIndex=24
           }
           else if (!this.movesTaken.includes(this.actualIndex-1) && this.actualIndex!=33){
-            this.actualIndex--;
+            this.movesTaken.push(this.actualIndex);this.actualIndex--;
           }
           else{
             this.movesAvailable++;
           }break
         }
       }
+      console.log(this.movesAvailable)
+      this.playerLocation()
+      return this.movesAvailable
     }
+  }
   playerLocation(){
     switch(this.actualIndex){
       case 0  : this.x=285 ; this.y =250 ;this.actualCategory="";break
@@ -261,5 +267,23 @@ class Player{
       case 36 : this.x=500 ; this.y =85 ;this.actualCategory="E";break
     }
   }
+clearOldInfo(){
+  this.movesAvailable=0
+  this.movesTaken=[]
+}
+checkAllTrue(){
+  
+  let allTrue=true
+  this.categories.forEach(element => {
+    if(!element) allTrue=false
+  })
 
+  return allTrue
+}
+reset(){
+  this.clearOldInfo()
+  this.actualIndex= 24;
+  this.playerLocation()
+  this.categories=[false,false,false,false,false]
+}
   }

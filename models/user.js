@@ -9,6 +9,7 @@ const userSchema = new Schema({
     dateOfBirth : Date,
     adress: String,
     email: String,
+    highScore: {type: Number, default: 0}
 },
     {
     timestamps: true
