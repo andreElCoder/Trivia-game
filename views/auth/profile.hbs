@@ -2,32 +2,32 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="http://www.marghoobsuleman.com/mywork/jcomponents/image-dropdown/samples/js/msdropdown/jquery.dd.min.js"></script>
 
- 
- <h1>{{title}}</h1>
+ <div class="container">
+  <form id="form"action="/sign-up" method="POST" enctype="multipart/form-data" class="px-4 py-3">
+
+
 {{#if currentUser}}
-  <h3>Welcome {{currentUser.username}}</h3>
+  <h3>Welcome, {{currentUser.username}}</h3>
 {{/if}}
 
-
-<div>
-  <form id="form"action="/sign-up" method="POST" enctype="multipart/form-data">
+ <div class="form-group">
   <label for ="email">Email</label>
-  <input id="email" type="text" name="email" placeholder="johndoe@gmail.com">
+  <input id="email" class="form-control" type="text" name="email" placeholder="johndoe@gmail.com" value="{{user.email}}"  style="text-align: center;">
   </div>
 
-  <div>
-  <label for ="adress">Adress</label>
-  <input id="adress" type="text" name="adress" placeholder="Your Adress">
+  <div class="form-group">
+  <label for ="adress">Address</label>
+  <input id="adress" class="form-control" type="text" name="adress" value="{{user.adress}}" placeholder="Your Address" style="text-align: center;">
   </div>
 
-<div>
+<div class="form-group">
   <label for="dateOfBirth">Date of Birth</label>
-  <input id="dateOfBirth" type="text" name="adress" placeholder="1990-01-01">
+  <input id="dateOfBirth" class="form-control" type="text" name="adress" value="{{user.dateOfBirth}}" placeholder="1990-01-01" style="text-align: center;">
 </div>
 
-<div>
+<div class="form-group">
   <label>Avatar</label>
-  <select name="avatar" id="menu">
+  <select name="avatar" id="menu" class="form-control" value="{{user.avatar}}">
     <option value=""></option>
     <option value="https://api.adorable.io/avatars/100/avatar1@adorable.io.png" title="https://api.adorable.io/avatars/100/avatar1@adorable.io.png"></option>
     <option value="https://api.adorable.io/avatars/100/avatar1@adorable.io.png" title="https://api.adorable.io/avatars/100/avatar2@adorable.io.png"></option>
@@ -35,22 +35,23 @@
     <option value="https://api.adorable.io/avatars/100/avatar1@adorable.io.png" title="https://api.adorable.io/avatars/100/avatar4@adorable.io.png"></option>
     <option value="https://api.adorable.io/avatars/100/avatar1@adorable.io.png" title="https://api.adorable.io/avatars/100/avatar5@adorable.io.png"></option>
     <option value="https://api.adorable.io/avatars/100/avatar1@adorable.io.png" title="https://api.adorable.io/avatars/100/avatar6@adorable.io.png"></option>
-  </select></div>
+  </select>
+  </div>
 
-<div>
+<div class="form-group" > 
   <label>Photo</label>
-  <input type="file" name="photo">
+  <input type="file" name="photo" class="form-control" style="text-align: center;" >
 </div>
 
-<div>
-    <button type="submit">Update Account</button>
+<div class="form-group">
+    <button type="submit" class="btn btn-primary">Update Account</button>
 </div>
 </form>
 
 <div>
   <form method="get" action="/main">
-    <button type="submit">GET SOME NUTS AND GO TO PLAY</button>
+    <button class="btn btn-primary" type="submit">GET SOME NUTS AND GO TO PLAY</button>
 </form>
 </div>
 
-
+</div>
