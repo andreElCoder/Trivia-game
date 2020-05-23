@@ -7,7 +7,7 @@ const userSchema = new Schema({
     imgName: String,
     imgPath: String,
     dateOfBirth : Date,
-    address: String,
+    adress: String,
     email: String,
     highScore: {type: Number, default: 0}
 },
