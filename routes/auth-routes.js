@@ -112,4 +112,26 @@ else{
       }
     })
   })
+
+  router.get('/auth/profile', (req, res, next) => {
+    User.findOne({_id: req.query.user_id})
+    .then((user) => {
+      res.render("profile", {user});
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  }); 
+
+  router.post('/auth/profile', (req, res, next) => {
+    const { email, dateOfBirth, address, avatar,imgName, imgPath } = req.body;
+    User.update({_id: req.query.users_id}, { $set: {email, dateOfBirth, address, avatar, imgName, imgPath }})
+    .then((user) => {
+      res.redirect('/profile',);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  });
+
   module.exports = router;
